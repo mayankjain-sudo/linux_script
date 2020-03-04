@@ -1,0 +1,27 @@
+How to create RPM package of any shell script.
+
+ labadmin@labadmin:~ mkdir -p rpms/BUILDROOT/script-1.0-1.x86_64/usr/bin/
+ 
+ labadmin@labadmin:~ vim script.sh
+ script.sh is your shell script file with your contains.
+ labadmin@labadmin:~ script.spec
+ Please add the below contain in script.spec
+======================================================================== 
+  Summary:   None
+  Name:      script
+  Version:   1.0
+  Release:   1
+  License:   GPL
+  Group:     None          
+  Packager:  Mayankk Jain <immanku7@gmail.com>
+  BuildArchitectures: i386/x86_64
+  BuildRoot: /home/labadmin/rpms/BUILDROOT/script-1.0-1.x86_64
+
+  %description
+  No description
+
+  %files
+  /usr/bin/script.sh
+ =========================================================================
+ labadmin@labadmin:~ rpmbuild -bb script.spec
+ Above command will create the RPM package in /home/labadmin/rpmbuild/RPMS/x86_64 
