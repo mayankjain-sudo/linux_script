@@ -67,6 +67,7 @@ echo "
 -w /etc/selinux/ -p wa -k selinux_changes
 -w /etc/hosts -p wa -k hosts_file_change
 -w /etc/ssh/ -p rwa -k ssh_dir_access
+-w /etc/selinux/ -p wa -k selinux_changes
 -w /etc/fstab -p wa -k fstab_file_change" >> /etc/audit/rules.d/audit.rules
 
 echo -e "\033[32mStandard Audit Rules are set\033[0m"
