@@ -23,21 +23,21 @@ echo "\033[31mThis script will creates SFTP Account and allow only access to Hom
 echo -e "\033[36mChecking username is passed or not. \033[0m"
 
 echo -e "\033[36mStatus is :\033[0m"
-sleep 2
+
 if [ $# -lt 1 ]; then
-echo -e "\033[32mPlease pass a username\033[0m"
-echo -e "\033[32m "Example: " $0 "mayank"\033[0m"]
-exit
+	echo -e "\033[32mPlease pass a username\033[0m"
+	echo -e "\033[32m "Example: " $0 "mayank"\033[0m"
+	exit
 fi
 
 echo -e "\033[36mChecking username is already present or not. \033[0m"
 
 echo -e "\033[36mStatus is :\033[0m"
-sleep 2
+
 if id "$1" >/dev/null 2>&1; then
- echo -e "\033[32mUsername Exists\033[0m"
- echo -e "\033[32mUse different username\033[0m"
- exit
+	echo -e "\033[32mUsername Exists\033[0m"
+	echo -e "\033[32mUse different username\033[0m"
+	exit
 fi
 
 echo -e "\033[36mGenerating Random password for new User. \033[0m"
@@ -55,11 +55,8 @@ echo -e "\033[36mApplying Permission and setting for folder. \033[0m"
 
 echo -e "\033[36mStatus is :\033[0m"
 
-mkdir /home/$newuser
 chown root:root /home/$newuser
-sleep 5
 mkdir /home/$newuser/sftproot
-sleep 5
 chown $newuser:$newuser /home/$newuser/sftproot
 
 cat <<EOF >> /etc/ssh/sshd_config
@@ -79,8 +76,8 @@ echo -e "\033[36mCredentials file is creating for SFTP at location /home/account
 
 echo -e "\033[36mStatus is :\033[0m"
 
-cat <<EOF >> /home/account.txt
+cat >> /home/account.txt <<EOL
 $newuser $randompw
-EOF
+EOL
 
 echo -e "\033[32m"SFTP Account:" $newuser "has been created with the password:" $randompw \033[0m"
